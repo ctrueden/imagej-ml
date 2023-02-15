@@ -9,17 +9,16 @@
 		<relativePath />
 	</parent>
 
-	<groupId>net.imagej</groupId>
-	<artifactId>imagej-ml</artifactId>
+	<artifactId>ipc-shm-demo</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
-	<name>ImageJ ML playground</name>
-	<description>Run ML models in ImageJ2.</description>
-	<url>https://github.com/imagej/imagej-ml</url>
+	<name>Interprocess shared memory demo</name>
+	<description>Polyglot plugins or bust.</description>
+	<url>https://github.com/scijava/ipc-shm-demo</url>
 	<inceptionYear>2023</inceptionYear>
 	<organization>
-		<name>ImageJ</name>
-		<url>https://imagej.net/</url>
+		<name>SciJava</name>
+		<url>https://scijava.org/</url>
 	</organization>
 	<licenses>
 		<license>
@@ -32,7 +31,7 @@
 		<developer>
 			<id>ctrueden</id>
 			<name>Curtis Rueden</name>
-			<url>https://imagej.net/User:Rueden</url>
+			<url>https://imagej.net/people/ctrueden</url>
 			<roles>
 				<role>founder</role>
 				<role>lead</role>
@@ -53,38 +52,38 @@
 	<mailingLists>
 		<mailingList>
 			<name>Image.sc Forum</name>
-			<archive>https://forum.image.sc/tag/imagej2</archive>
+			<archive>https://forum.image.sc/tag/who-even-knows</archive>
 		</mailingList>
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:https://github.com/imagej/imagej-ml</connection>
-		<developerConnection>scm:git:git@github.com:imagej/imagej-ml</developerConnection>
+		<connection>scm:git:https://github.com/scijava/ipc-shm-demo</connection>
+		<developerConnection>scm:git:git@github.com:scijava/ipc-shm-demo</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/imagej/imagej-ml</url>
+		<url>https://github.com/scijava/ipc-shm-demo</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/imagej/imagej-ml/issues</url>
+		<url>https://github.com/scijava/ipc-shm-demo/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>GitHub Actions</system>
-		<url>https://github.com/imagej/imagej-ml/actions</url>
+		<url>https://github.com/scijava/ipc-shm-demo/actions</url>
 	</ciManagement>
 
 	<properties>
-		<package-name>net.imagej.ml</package-name>
+		<package-name>org.scijava.ipc_shg_demo</package-name>
 
 		<license.licenseName>bsd_2</license.licenseName>
-		<license.copyrightOwners>ImageJ2 developers.</license.copyrightOwners>
-		<license.projectName>ImageJ2 software for multidimensional image processing and analysis.</license.projectName>
+		<license.copyrightOwners>SciJava developers.</license.copyrightOwners>
+		<license.projectName>Interprocess shared memory demo.</license.projectName>
 
 		<!-- NB: Deploy releases to the SciJava Maven repository. -->
 		<releaseProfiles>sign,deploy-to-scijava</releaseProfiles>
 
-		<dl-model-runner.version>0.0.1</dl-model-runner.version>
-		<mobie-io.version>2.0.10</mobie-io.version>
-		<arrow.version>11.0.0</arrow.version>
+		<larray-mmap.version>0.4.1</larray-mmap.version> 
+		<black.ninia.jep.version>4.1.1</black.ninia.jep.version>
+		<javacpp-embedded-python.version>1.0.0</javacpp-embedded-python.version>
 	</properties>
 
 	<repositories>
@@ -95,56 +94,36 @@
 	</repositories>
 
 	<dependencies>
-		<!-- bioimage.io dependencies -->
 		<dependency>
-			<groupId>org.bioimageanalysis.icy</groupId>
-			<artifactId>dl-model-runner</artifactId>
-			<version>${dl-model-runner.version}</version>
+			<groupId>org.xerial.larray</groupId>
+			<artifactId>larray-mmap</artifactId>
+			<version>${larray-mmap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna-platform</artifactId>
+			<version>${jna.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.embl.mobie</groupId>
-			<artifactId>mobie-io</artifactId>
-			<version>${mobie-io.version}</version>
+			<groupId>black.ninia</groupId>
+			<artifactId>jep</artifactId>
+			<version>${black.ninia.jep.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.arrow</groupId>
-			<artifactId>arrow-vector</artifactId>
-			<version>${arrow.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.arrow</groupId>
-			<artifactId>arrow-memory-netty</artifactId>
-			<version>${arrow.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.arrow</groupId>
-			<artifactId>flight-core</artifactId>
-			<version>${arrow.version}</version>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacpp-embedded-python</artifactId>
+			<version>${javacpp-embedded-python.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>sc.fiji</groupId>
 			<artifactId>fiji</artifactId>
 		</dependency>
-
-		<!-- Test scope dependencies -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
-
-	<build>
-		<extensions>
-			<extension>
-				<groupId>kr.motd.maven</groupId>
-				<artifactId>os-maven-plugin</artifactId>
-				<version>1.7.0</version>
-			</extension>
-		</extensions>
-	</build>
-
 </project>
